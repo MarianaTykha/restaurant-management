@@ -1,0 +1,16 @@
+{% block content %}
+    <h1>Add New Dish</h1>
+
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        {% if form.errors %}
+            <div class="alert alert-danger mt-3">
+                Please fix the errors below.
+            </div>
+        {% endif %}
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+{% endblock %}

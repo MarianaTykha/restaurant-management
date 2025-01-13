@@ -1,0 +1,19 @@
+<!-- templates/kitchen/edit_dish.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Dish</title>
+</head>
+<body>
+    <h1>Edit Dish</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save Changes</button>
+    </form>
+    <br>
+    <a href="{% url 'dish_list' %}">Back to Dishes List</a>
+</body>
+</html>

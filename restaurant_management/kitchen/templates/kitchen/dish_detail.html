@@ -1,0 +1,16 @@
+{% extends "kitchen/base.html" %}
+
+{% block content %}
+    <h1 class="my-4">{{ dish.name }}</h1>
+    <p><strong>Dish Type:</strong> {{ dish.dish_type.name }}</p>
+    <p><strong>Description:</strong> {{ dish.description }}</p>
+    <p><strong>Price:</strong> {{ dish.price }}</p>
+    <p><strong>Servings:</strong> {{ dish.servings }}</p>
+
+    {% if dish.image %}
+        <img src="{{ dish.image.url }}" alt="{{ dish.name }}" class="img-fluid">
+    {% endif %}
+
+    <a href="{% url 'dish_list' %}" class="btn btn-secondary mt-3">Back to Dish List</a>
+    <a href="{% url 'edit_dish' dish.pk %}" class="btn btn-warning mt-3 ms-2">Edit Dish</a>
+{% endblock %}
