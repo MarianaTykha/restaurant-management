@@ -1,10 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Management</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
-$END$
-</body>
-</html>
+    <header>
+        <h1>Welcome to Restaurant Management</h1>
+    </header>
+
+    <main>
+        <section>
+            <h2>Our Dishes</h2>
+            <ul>
+                <li><img src="{% static 'images/Cake-napoleon.jpg' %}" alt="Cake Napoleon"></li>
+                <li><img src="{% static 'images/Chocolate-Biscuits.jpg' %}" alt="Chocolate Biscuits"></li>
+                <li><img src="{% static 'images/Mushroom-soup.jpg' %}" alt="Mushroom Soup"></li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>

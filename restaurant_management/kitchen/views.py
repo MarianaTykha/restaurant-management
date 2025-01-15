@@ -1,10 +1,15 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Dish, DishType, Chef
 from .forms import DishForm
+from django.http import HttpResponse
 
 
 def index(request):
     return render(request, "kitchen/index.html")
+
+
+def home(request):
+    return HttpResponse("Welcome to the kitchen!")
 
 
 def dish_list(request):
