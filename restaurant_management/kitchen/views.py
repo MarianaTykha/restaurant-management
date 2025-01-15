@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Dish, DishType, Chef
+from .models import Dish
 from .forms import DishForm
 from django.http import HttpResponse
 
@@ -19,7 +19,9 @@ def dish_list(request):
 
 def add_dish(request):
     if request.method == "POST":
-        form = DishForm(request.POST)
+        form = DishForm(
+            request.POST, request.FILES
+        )  # Додаємо request.FILES для завантаження зображення
         if form.is_valid():
             form.save()
             return redirect("dish_list")
@@ -36,7 +38,9 @@ def dish_detail(request, pk):
 def edit_dish(request, pk):
     dish = get_object_or_404(Dish, pk=pk)
     if request.method == "POST":
-        form = DishForm(request.POST, instance=dish)
+        form = DishForm(
+            request.POST, request.FILES, instance=dish
+        )  # Додаємо request.FILES
         if form.is_valid():
             form.save()
             return redirect("dish_list")
