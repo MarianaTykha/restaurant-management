@@ -3,10 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kitchen Index</title>
+    <title>Kitchen App</title>
 </head>
 <body>
-    <h1>Welcome to the Kitchen!</h1>
-    <p><a href="{% url 'dish_list' %}">View All Dishes</a></p>
+    <h1>Welcome to the Kitchen App</h1>
+
+    <nav>
+        <ul>
+            <li><a href="{% url 'index' %}">Home</a></li>
+            <li><a href="{% url 'dish_list' %}">Dish List</a></li>
+            <li><a href="{% url 'add_dish' %}">Add Dish</a></li>
+        </ul>
+    </nav>
+
+    <h2>Dish List</h2>
+    <ul>
+        {% for dish in dishes %}
+            <li>
+                <h3>{{ dish.name }}</h3>
+                {% if dish.image %}
+                    <img src="{{ dish.image.url }}" alt="{{ dish.name }}" width="200">
+                {% else %}
+                    <p>No image available</p>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
 </body>
 </html>

@@ -22,9 +22,7 @@ class Dish(models.Model):
     )
     image = models.ImageField(upload_to="dishes/", null=True, blank=True)
     servings = models.IntegerField(default=1)
-    date_added = models.DateTimeField(
-        auto_now_add=True
-    )  # Додано поле для дати додавання страви
+    date_added = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         verbose_name = _("Dish")

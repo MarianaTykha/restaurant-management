@@ -9,6 +9,11 @@
                 <div>
                     <strong>{{ dish.name }}</strong>
                     <p class="mb-1"><em>{{ dish.dish_type.name }}</em></p>
+                    {% if dish.image %}
+                        <img src="{{ dish.image.url }}" alt="{{ dish.name }}" width="100">
+                    {% else %}
+                        <p>No image available</p>
+                    {% endif %}
                 </div>
                 <div>
                     <a href="{% url 'edit_dish' dish.pk %}" class="btn btn-warning btn-sm ml-2">Edit</a>
