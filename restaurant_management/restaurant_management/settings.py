@@ -10,8 +10,6 @@ SECRET_KEY = os.getenv(
     "SECRET_KEY", "django-insecure-y1$qt@6^82g7jq_20$u(k!qziq_(obuecq())zo@-j=vxi2u#j"
 )
 
-DEBUG = os.getenv("DEBUG", "True") == "True"
-
 ALLOWED_HOSTS = ["127.0.0.1", "localhost"]
 
 INSTALLED_APPS = [
@@ -95,8 +93,7 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 
 DEBUG = os.getenv("DEBUG", "True") == "True"
 
-
-MEDIA_URL = "/media/"
-MEDIA_ROOT = BASE_DIR / "media/"
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"

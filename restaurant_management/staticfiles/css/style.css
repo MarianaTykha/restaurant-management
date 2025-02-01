@@ -1,31 +1,65 @@
-{% load static %}
+body {
+    background-image: url("{% static 'images/homepage.jpg' %}");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: white;
+}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Restaurant Management</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-</head>
-<body>
-    <header>
-        <h1>Welcome to Our Restaurant</h1>
-    </header>
+header {
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    color: white;
+    margin-bottom: 30px;
+}
 
-    <main>
-        <section>
-            <h2>Our Dishes</h2>
-            <ul>
-                <li><img src="{% static 'images/Cake-napoleon.jpg' %}" alt="Cake Napoleon"></li>
-                <li><img src="{% static 'images/Chocolate-Biscuits.jpg' %}" alt="Chocolate Biscuits"></li>
-                <li><img src="{% static 'images/Mushroom-soup.jpg' %}" alt="Mushroom Soup"></li>
-            </ul>
-        </section>
-    </main>
+h1 {
+    font-size: 3em;
+    margin: 0;
+}
 
-    <footer>
-        <p>&copy; 2025 Restaurant Management</p>
-    </footer>
-</body>
-</html>
+main {
+    padding: 20px;
+    text-align: center;
+}
+
+section h2 {
+    font-size: 2.5em;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+ul li {
+    text-align: center;
+}
+
+ul li img {
+    width: 250px;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+ul li img:hover {
+    transform: scale(1.1);
+}
+
+footer {
+    background-color: #222;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}

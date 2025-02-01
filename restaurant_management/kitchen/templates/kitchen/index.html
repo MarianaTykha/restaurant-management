@@ -1,12 +1,127 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kitchen App</title>
+    <style>
+        body {
+            background-image: url("{% static 'images/homepage.jpg' %}");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: white;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            color: white;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            font-size: 3em;
+            margin: 0;
+        }
+
+        nav {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        nav ul li {
+            display: inline;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-size: 1.2em;
+            font-weight: bold;
+            padding: 10px 20px;
+            border-radius: 30px;
+            transition: background-color 0.3s ease-in-out;
+            background-color: #556B2F; /* Темно-зелені овали */
+        }
+
+        nav ul li a:hover {
+            background-color: #6B8E23; /* Світліший оливковий колір при наведенні */
+        }
+
+        main {
+            padding: 20px;
+            text-align: center;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        ul li {
+            text-align: center;
+        }
+
+        ul li img {
+            width: 200px;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        ul li img:hover {
+            transform: scale(1.1);
+        }
+
+        .view-btn {
+            background-color: #808000; /* Оливковий колір для кнопки */
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            font-weight: bold;
+            display: inline-block;
+        }
+
+        .view-btn:hover {
+            background-color: #6B8E23; /* Світліший оливковий при наведенні */
+        }
+
+        footer {
+            background-color: #222;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
 </head>
 <body>
-    <h1>Welcome to the Kitchen App</h1>
+    <header>
+        <h1>Welcome to the Kitchen App</h1>
+    </header>
 
     <nav>
         <ul>
@@ -16,18 +131,24 @@
         </ul>
     </nav>
 
-    <h2>Dish List</h2>
-    <ul>
-        {% for dish in dishes %}
-            <li>
-                <h3>{{ dish.name }}</h3>
-                {% if dish.image %}
-                    <img src="{{ dish.image.url }}" alt="{{ dish.name }}" width="200">
-                {% else %}
-                    <p>No image available</p>
-                {% endif %}
-            </li>
-        {% endfor %}
-    </ul>
+    <main>
+        <ul>
+            {% for dish in dishes %}
+                <li>
+                    <h3>{{ dish.name }}</h3>
+                    {% if dish.image %}
+                        <img src="{{ dish.image.url }}" alt="{{ dish.name }}" width="200">
+                    {% else %}
+                        <p>No image available</p>
+                    {% endif %}
+                    <a href="{% url 'view_dish' dish.id %}" class="view-btn">View</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Kitchen App</p>
+    </footer>
 </body>
 </html>

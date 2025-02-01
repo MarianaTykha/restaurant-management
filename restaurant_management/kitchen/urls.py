@@ -13,7 +13,4 @@ urlpatterns = [
     path("dish/<int:pk>/", views.dish_detail, name="dish_detail"),
     path("dish/edit/<int:pk>/", views.edit_dish, name="edit_dish"),
     path("dish/delete/<int:pk>/", views.delete_dish, name="delete_dish"),
-]
-
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

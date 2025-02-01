@@ -5,27 +5,154 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Restaurant Management</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>Kitchen App</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            position: relative;
+            height: 100vh;
+        }
+
+        body::before {
+    content: "";
+    position: absolute;
+    top: -35px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url("{% static 'images/homepage.jpg' %}");
+    background-size: auto;
+    background-repeat: repeat-y;
+    background-position: top center;
+    background-attachment: fixed;
+    opacity: 0.3;
+    z-index: -1;
+}
+
+        header {
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            color: white;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            font-size: 3em;
+            margin: 0;
+        }
+
+        nav {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-top: 40px; /* Спробуємо збільшити відступ */
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-size: 1.2em;
+            font-weight: bold;
+            background-color: #6a4e23; /* Темно-зелені овали */
+            padding: 10px 20px;
+            border-radius: 30px;
+            transition: background-color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            background-color: #9b4d2f; /* Темно-бурячковий колір */
+        }
+
+        main {
+            padding: 20px;
+            text-align: center;
+        }
+
+        section h2 {
+            font-size: 2.5em;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        ul li {
+            text-align: center;
+        }
+
+        ul li img {
+            width: 250px;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        ul li img:hover {
+            transform: scale(1.1);
+        }
+
+        footer {
+            background-color: #222;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
 </head>
 <body>
     <header>
-        <h1>Welcome to Our Restaurant</h1>
+        <h1>Welcome to the Kitchen App</h1>
     </header>
 
+    <nav>
+        <ul>
+            <li><a href="{% url 'index' %}">Home</a></li>
+            <li><a href="{% url 'dish_list' %}">Dish List</a></li>
+            <li><a href="{% url 'add_dish' %}">Add Dish</a></li>
+        </ul>
+    </nav>
+
     <main>
-        <section>
-            <h2>Our Dishes</h2>
-            <ul>
-                <li><img src="{% static 'images/Cake-napoleon.jpg' %}" alt="Cake Napoleon"></li>
-                <li><img src="{% static 'images/Chocolate-Biscuits.jpg' %}" alt="Chocolate Biscuits"></li>
-                <li><img src="{% static 'images/Mushroom-soup.jpg' %}" alt="Mushroom Soup"></li>
-            </ul>
-        </section>
+        <h2>Dish List</h2>
+        <ul>
+            {% for dish in dishes %}
+                <li>
+                    <h3>{{ dish.name }}</h3>
+                    {% if dish.image %}
+                        <img src="{{ dish.image.url }}" alt="{{ dish.name }}" width="200">
+                    {% else %}
+                        <p>No image available</p>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
     </main>
 
     <footer>
-        <p>&copy; 2025 Restaurant Management</p>
+        <p>&copy; 2025 Kitchen App</p>
     </footer>
 </body>
 </html>
