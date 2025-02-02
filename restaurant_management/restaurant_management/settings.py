@@ -6,9 +6,7 @@ load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = os.getenv(
-    "SECRET_KEY", "django-insecure-y1$qt@6^82g7jq_20$u(k!qziq_(obuecq())zo@-j=vxi2u#j"
-)
+SECRET_KEY = os.getenv("SECRET_KEY")
 
 ALLOWED_HOSTS = ["127.0.0.1", "localhost"]
 
@@ -21,7 +19,6 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "kitchen",
 ]
-
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
