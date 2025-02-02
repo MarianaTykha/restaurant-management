@@ -1,57 +1,54 @@
-from django.shortcuts import render, get_object_or_404, redirect
+from django.views.generic import TemplateView, ListView, CreateView, DetailView, UpdateView, DeleteView
+from django.urls import reverse_lazy
 from .models import Dish
 from .forms import DishForm
+from django.shortcuts import render
 from django.http import HttpResponse
+
+
+def home(request):
+    return HttpResponse("Welcome to the home page!")
 
 
 def index(request):
     return render(request, "kitchen/index.html")
 
 
-def home(request):
-    return HttpResponse("Welcome to the kitchen!")
+class IndexView(TemplateView):
+    template_name = "kitchen/index.html"
 
 
-def dish_list(request):
-    dishes = Dish.objects.all()
-    return render(request, "kitchen/dish_list.html", {"dishes": dishes})
+class HomeView(TemplateView):
+    template_name = "kitchen/home.html"
 
 
-def add_dish(request):
-    if request.method == "POST":
-        form = DishForm(
-            request.POST, request.FILES
-        )  # Додаємо request.FILES для завантаження зображення
-        if form.is_valid():
-            form.save()
-            return redirect("dish_list")
-    else:
-        form = DishForm()
-    return render(request, "kitchen/add_dish.html", {"form": form})
+class DishListView(ListView):
+    model = Dish
+    template_name = "kitchen/dish_list.html"
+    context_object_name = "dishes"
 
 
-def dish_detail(request, pk):
-    dish = get_object_or_404(Dish, pk=pk)
-    return render(request, "kitchen/dish_detail.html", {"dish": dish})
+class AddDishView(CreateView):
+    model = Dish
+    form_class = DishForm
+    template_name = "kitchen/add_dish.html"
+    success_url = reverse_lazy("dish_list")
 
 
-def edit_dish(request, pk):
-    dish = get_object_or_404(Dish, pk=pk)
-    if request.method == "POST":
-        form = DishForm(
-            request.POST, request.FILES, instance=dish
-        )  # Додаємо request.FILES
-        if form.is_valid():
-            form.save()
-            return redirect("dish_list")
-    else:
-        form = DishForm(instance=dish)
-    return render(request, "kitchen/edit_dish.html", {"form": form})
+class DishDetailView(DetailView):
+    model = Dish
+    template_name = "kitchen/dish_detail.html"
+    context_object_name = "dish"
 
 
-def delete_dish(request, pk):
-    dish = get_object_or_404(Dish, pk=pk)
-    if request.method == "POST":
-        dish.delete()
-        return redirect("dish_list")
-    return render(request, "kitchen/delete_dish.html", {"dish": dish})
+class EditDishView(UpdateView):
+    model = Dish
+    form_class = DishForm
+    template_name = "kitchen/edit_dish.html"
+    success_url = reverse_lazy("dish_list")
+
+
+class DeleteDishView(DeleteView):
+    model = Dish
+    template_name = "kitchen/delete_dish.html"
+    success_url = reverse_lazy("dish_list")
