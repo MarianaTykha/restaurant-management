@@ -10,10 +10,6 @@ def home(request):
     return HttpResponse("Welcome to the home page!")
 
 
-def index(request):
-    return render(request, "kitchen/index.html")
-
-
 class IndexView(TemplateView):
     template_name = "kitchen/index.html"
 
