@@ -8,7 +8,22 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.getenv("SECRET_KEY")
 
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+
+SECURE_HSTS_PRELOAD = True
+
+SECURE_HSTS_SECONDS = 3600
+
+#SECURE_SSL_REDIRECT = True
+
+#SESSION_COOKIE_SECURE = True
+
+#CSRF_COOKIE_SECURE = True
+
+
 ALLOWED_HOSTS = ["127.0.0.1", "localhost"]
+
+LOGIN_REDIRECT_URL ="/"
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -89,7 +104,7 @@ STATICFILES_DIRS = [
 ]
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
-DEBUG = os.getenv("DEBUG", "True") == "True"
+DEBUG = os.getenv("DJANGO_DEBUG", "") != "False"
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
