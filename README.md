@@ -81,6 +81,12 @@ This project is licensed under the MIT License.
 # Contact
 For questions or suggestions, feel free to reach out via GitHub Issues.
 
-#Demo
+# Demo
 The project is deployed on Render. Here is the link:  
 [Visit the site](https://restaurant-management-6xwi.onrender.com)
+
+# Demo User
+You can log in to the site using the following credentials:
+Username: user  
+Password: user12345
+
