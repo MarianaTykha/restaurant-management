@@ -21,7 +21,8 @@ SECURE_HSTS_SECONDS = 3600
 #CSRF_COOKIE_SECURE = True
 
 
-ALLOWED_HOSTS = ["127.0.0.1", "localhost"]
+ALLOWED_HOSTS = ["restaurant-management.onrender.com"]
+
 
 LOGIN_REDIRECT_URL ="/"
 
@@ -69,12 +70,15 @@ WSGI_APPLICATION = "restaurant_management.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": os.getenv("DB_ENGINE", "django.db.backends.sqlite3"),
-        "NAME": os.getenv("DB_NAME", BASE_DIR / "db.sqlite3"),
-        "USER": os.getenv("DB_USERNAME", ""),
-        "PASSWORD": os.getenv("DB_PASS", ""),
-        "HOST": os.getenv("DB_HOST", ""),
-        "PORT": os.getenv("DB_PORT", "3306"),
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": os.getenv("POSTGRES_DB"),
+        "USER": os.getenv("POSTGRES_USER"),
+        "PASSWORD": os.getenv("POSTGRES_PASSWORD"),
+        "HOST": os.getenv("POSTGRES_HOST"),
+        "PORT": int(os.getenv("POSTGRES_DB_PORT", 5432)),
+        "OPTIONS": {
+            "sslmode": "require",
+        },
     }
 }
 
